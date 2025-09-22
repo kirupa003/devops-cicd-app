@@ -9,7 +9,7 @@ app.use(express.json());
 // Routes
 app.get('/', (req, res) => {
   res.json({
-    message: 'Hello DevOps! Hope CI/CD Pipeline Working!',
+    message: 'Hello DevOps! CI/CD Pipeline Working!',
     timestamp: new Date().toISOString(),
     version: '1.0.0'
   });
