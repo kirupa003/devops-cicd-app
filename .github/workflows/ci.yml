@@ -77,10 +77,10 @@ jobs:
 #     - name: Checkout code
 #       uses: actions/checkout@v4
     
-#     - name: Setup Node.js ${{ matrix.node-version }}
+#     - name: Setup Node.js {{ matrix.node-version }}
 #       uses: actions/setup-node@v4
 #       with:
-#         node-version: ${{ matrix.node-version }}
+#         node-version: {{ matrix.node-version }}
 #         cache: 'npm'
     
 #     - name: Install dependencies
@@ -116,8 +116,8 @@ jobs:
     
 #     - name: Build Docker image
 #       run: |
-#         docker build -t devops-cicd-app:${{ github.sha }} .
-#         docker tag devops-cicd-app:${{ github.sha }} devops-cicd-app:latest
+#         docker build -t devops-cicd-app:{{ github.sha }} .
+#         docker tag devops-cicd-app:{{ github.sha }} devops-cicd-app:latest
     
 #     - name: Test Docker image
 #       run: |
@@ -130,4 +130,4 @@ jobs:
 #     - name: Log build success
 #       run: |
 #         echo "✅ Build completed successfully!"
-#         echo "📦 Docker image: devops-cicd-app:${{ github.sha }}"
+#         echo "📦 Docker image: devops-cicd-app:{{ github.sha }}"
