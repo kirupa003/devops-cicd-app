@@ -1,12 +1,8 @@
 pipeline {
     agent any
 
-    environment {
-        NODE_VERSION = "20"  // choose 18 or 20
-    }
-
     tools {
-        nodejs "${NODE_VERSION}"   // Requires Jenkins NodeJS plugin
+        nodejs 'NodeJS-20'   // Must match the name set in Manage Jenkins → Tools
     }
 
     stages {
@@ -18,7 +14,8 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm ci'
+                sh 'node -v'     // Verify Node version
+                sh 'npm ci'      // Install from package-lock.json
             }
         }
 
@@ -33,17 +30,6 @@ pipeline {
                 sh 'npm run build'
             }
         }
-
-        stage('Deploy') {
-            when {
-                branch 'main'
-            }
-            steps {
-                // Replace with your deployment logic
-                // Example: copy files to server or call an AWS CLI command
-                sh './deploy.sh'
-            }
-        }
     }
 
     post {
@@ -52,6 +38,7 @@ pipeline {
         }
     }
 }
+
 // pipeline {
 //     agent any
 
